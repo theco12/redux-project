@@ -17,7 +17,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Input.Search />
+          <Input.Search placeholder="input search text" />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signup">
@@ -26,9 +26,9 @@ const AppLayout = ({ children }) => {
         </Menu.Item>
       </Menu>
       <Row>
-        <Col xs={24} md={6}></Col>
-        <Col xs={24} md={6}></Col>
-        <Col xs={24} md={6}></Col>
+        <Col xs={24} md={6}>왼편이미지</Col>
+        <Col xs={24} md={6}>가운데</Col>
+        <Col xs={24} md={6}>오른쪽 이미지</Col>
       </Row>
 
       {children}
