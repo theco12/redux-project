@@ -1,10 +1,16 @@
 import AppLayout from "../components/applayout";
+import Head from "next/head";
 
 const Home = () => {
   return (
-    <AppLayout>
-      <div>Home page</div>
-    </AppLayout>
+    <>
+      <Head>
+        <title>NodeBird</title>
+      </Head>
+      <AppLayout>
+        <div>Home page</div>
+      </AppLayout>
+    </>
   );
 };
 
