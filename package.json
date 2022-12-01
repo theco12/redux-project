@@ -1,5 +1,5 @@
 {
-  "name": "react-nodebird-front",
+  "name": "nodebird",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,21 +10,22 @@
     "type": "git",
     "url": "git+https://github.com/theco12/NodeBird.git"
   },
-  "author": "thecoraitve",
+  "author": "thecorative",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/theco12/NodeBird/issues"
   },
   "homepage": "https://github.com/theco12/NodeBird#readme",
   "dependencies": {
-    "eslint": "^8.28.0",
     "next": "^9.5.5",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
+    "eslint": "^8.28.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0"
   }
 }

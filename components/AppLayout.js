@@ -1,4 +1,3 @@
-import React from "react";
 import propTypes from "prop-types";
 import Link from "next/link";
 
@@ -15,9 +14,8 @@ const AppLayout = ({ children }) => {
         <Link href="/signup">
           <a>회원가입</a>
         </Link>
-
-        {children}
       </div>
+      {children}
     </div>
   );
 };

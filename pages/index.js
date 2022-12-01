@@ -2,11 +2,9 @@ import AppLayout from "../components/applayout";
 
 const Home = () => {
   return (
-    <div>
-      <AppLayout>
-        <div>hello native</div>
-      </AppLayout>
-    </div>
+    <AppLayout>
+      <div>Home page</div>
+    </AppLayout>
   );
 };
 
