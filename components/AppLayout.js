@@ -25,10 +25,16 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
       </Menu>
-      <Row>
-        <Col xs={24} md={6}>왼편이미지</Col>
-        <Col xs={24} md={6}>가운데</Col>
-        <Col xs={24} md={6}>오른쪽 이미지</Col>
+      <Row gutter={8}>
+        <Col xs={24} md={6}>
+          왼쪽메뉴
+        </Col>
+        <Col xs={24} md={12}>
+          {children}
+        </Col>
+        <Col xs={24} md={6}>
+          오른쪽메뉴
+        </Col>
       </Row>
 
       {children}
