@@ -27,13 +27,13 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          왼쪽메뉴
+          왼쪽메뉴1
         </Col>
         <Col xs={24} md={12}>
           {children}
         </Col>
         <Col xs={24} md={6}>
-          오른쪽메뉴
+          오른쪽메뉴1
         </Col>
       </Row>
 
