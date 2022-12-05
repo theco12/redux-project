@@ -18,7 +18,7 @@
   "homepage": "https://github.com/theco12/NodeBird#readme",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "antd": "^5.0.3",
+    "antd": "^5.0.4",
     "next": "^9.5.5",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
