@@ -7,9 +7,7 @@ const Home = () => {
       <Head>
         <title>NodeBird</title>
       </Head>
-      <AppLayout>
-        <div>Home page</div>
-      </AppLayout>
+      <AppLayout></AppLayout>
     </>
   );
 };

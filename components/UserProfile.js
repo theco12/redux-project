@@ -6,25 +6,26 @@ export default function UserProfile({ setIsLoggedIn }) {
     setIsLoggedIn(false);
   }, []);
 
-  return;
-  <Card
-    actions={[
-      <div key="twit">
-        짹짹
-        <br />0
-      </div>,
-      <div key="following">
-        팔로잉
-        <br />0
-      </div>,
-      <div key="following">
-        팔로워
-        <br />0
-      </div>,
-    ]}
-  >
-    <Card.Meta avatar={<Avatar>TC</Avatar>} title="thecorative" />
+  return (
+    <Card
+      actions={[
+        <div key="twit">
+          짹짹
+          <br />0
+        </div>,
+        <div key="following">
+          팔로잉
+          <br />0
+        </div>,
+        <div key="following">
+          팔로워
+          <br />0
+        </div>,
+      ]}
+    >
+      <Card.Meta avatar={<Avatar>TC</Avatar>} title="thecorative" />
 
-    <Button onclick={onLogout}>로그아웃</Button>
-  </Card>;
+      <Button onClick={onLogout}>로그아웃</Button>
+    </Card>
+  );
 }

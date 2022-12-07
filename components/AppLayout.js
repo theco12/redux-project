@@ -1,3 +1,4 @@
+import react from "react";
 import propTypes from "prop-types";
 import Link from "next/link";
 import { Menu, Input, Col, Row } from "antd";
@@ -23,7 +24,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Input placeholder="input search text" />
+          <Input.Search placeholder="input search text" />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signup">
@@ -40,7 +41,7 @@ const AppLayout = ({ children }) => {
           )}
         </Col>
         <Col xs={24} md={12}>
-         메뉴
+          메뉴
         </Col>
         <Col xs={24} md={6}>
           <a
