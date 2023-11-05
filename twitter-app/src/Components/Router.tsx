@@ -11,21 +11,33 @@ import ProfileEditPage from "pages/profile/edit";
 import LoginPage from "pages/users/login";
 import SignUpPage from "pages/users/signup";
 
-export default function Router() {
+interface RouterProps {
+  isAuthenticated: boolean;
+}
+
+export default function Router({ isAuthenticated }: RouterProps) {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/posts" element={<PostPage />} />
-      <Route path="/posts/new" element={<PostNewPage />} />
-      <Route path="/posts/:id" element={<PostDetailPage />} />
-      <Route path="/posts/edit/:id" element={<PostEditPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/profile/edit" element={<ProfileEditPage />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/notification" element={<Notification />} />
-      <Route path="/users/login" element={<LoginPage />} />
-      <Route path="/users/signup" element={<SignUpPage />} />
-      <Route path="*" element={<Navigate replace to="/" />} />
+      {isAuthenticated ? (
+        <>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts" element={<PostPage />} />
+          <Route path="/posts/new" element={<PostNewPage />} />
+          <Route path="/posts/:id" element={<PostDetailPage />} />
+          <Route path="/posts/edit/:id" element={<PostEditPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </>
+      ) : (
+        <>
+          <Route path="/users/login" element={<LoginPage />} />
+          <Route path="/users/signup" element={<SignUpPage />} />
+          <Route path="*" element={<Navigate replace to="/users/login" />} />
+        </>
+      )}
     </Routes>
   );
 }

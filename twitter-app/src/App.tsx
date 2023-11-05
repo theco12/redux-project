@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Router from "Components/Router";
 import Layout from "Components/Layout";
 import { getAuth } from "firebase/auth";
@@ -6,11 +7,11 @@ import { app } from "firebaseApp";
 
 function App() {
   const auth = getAuth(app);
-  console.log(auth);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!auth.currentUser);
 
   return (
     <Layout>
-      <Router />
+      <Router isAuthenticated={isAuthenticated} />
     </Layout>
   );
 }
