@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "firebaseApp";
 import { toast } from "react-toastify";
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -15,9 +14,9 @@ export default function SignUpForm() {
     e.preventDefault();
     try {
       const auth = getAuth(app);
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
-      toast.success("회원가입이 완료되었습니다.");
+      toast.success("로그인이 완료되었습니다.");
     } catch (error: any) {
       toast.error(error?.code);
     }
@@ -42,29 +41,14 @@ export default function SignUpForm() {
 
       if (value.length < 8) {
         setError("비밀번호는 8자리 이상이어야 합니다.");
-      } else if (value !== passwordConfirmation) {
-        setError("비밀번호와 비밀번호 확인 값이 다릅니다.");
-      } else {
-        setError("");
-      }
-    }
-
-    if (name === "password_confirmaiton") {
-      setPasswordConfirmation(value);
-
-      if (value?.length < 8) {
-        setError("비밀번호는 8자리 이상이어야 합니다.");
-      } else if (value !== password) {
-        setError("비밀번호와 비밀번호 확인 값이 다릅니다.");
       } else {
         setError("");
       }
     }
   };
-
   return (
     <form className="form form--lg" onSubmit={onSubmit}>
-      <div className="form__title">회원가입</div>
+      <div className="form__title">로그인</div>
       <div className="form__block">
         <label htmlFor="email">이메일</label>
         <input type="email" name="email" id="email" value={email} onChange={onChnage} required />
@@ -82,18 +66,6 @@ export default function SignUpForm() {
         />
       </div>
 
-      <div className="form__block">
-        <label htmlFor="password_confirmaiton">비밀번호 확인</label>
-        <input
-          type="password"
-          name="password_confirmaiton"
-          id="password_confirmaiton"
-          value={passwordConfirmation}
-          onChange={onChnage}
-          required
-        />
-      </div>
-
       {error && error.length > 0 && (
         <div className="form__block">
           <div className="form__error">{error}</div>
@@ -101,14 +73,14 @@ export default function SignUpForm() {
       )}
 
       <div className="form__block">
-        계정이 있으신가요?
-        <Link to="/users/login" className="form__link">
-          로그인 하기
+        계정이 없으신가요?
+        <Link to="/users/signin" className="form__link">
+          회원가입 하기
         </Link>
       </div>
       <div className="form__block--lg">
         <button type="submit" className="form__btn--submit" disabled={error?.length > 0}>
-          회원가입
+          로그인
         </button>
       </div>
     </form>
