@@ -20,6 +20,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+canvas {
+  width: 0;
+}
+
 * {
   background-color: $background;
   color: $white;
@@ -316,6 +320,22 @@ body {
     &:hover,
     &:focus {
       color: $gray;
+    }
+  }
+
+  &__error {
+    color: $danger;
+  }
+
+  &__btn--google {
+    @extend .form__btn--submit;
+    background-color: $white;
+    color: $activeBorder;
+
+    &:hover,
+    &:focus {
+      background-color: $activeBorder;
+      color: $white;
     }
   }
 }

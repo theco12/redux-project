@@ -6,9 +6,11 @@ import { useContext } from "react";
 import AuthContext from "context/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
+import { app } from "firebaseApp";
 
 export default function MenuList() {
   const navigate = useNavigate();
+
   const { user } = useContext(AuthContext);
 
   return (
@@ -32,10 +34,10 @@ export default function MenuList() {
           <button
             type="button"
             onClick={async () => {
-              const auth = getAuth();
+              const auth = getAuth(app);
               await signOut(auth);
               toast.success("로그아웃 되었습니다.");
-              navigate("/");
+              navigate("/users/login");
             }}>
             <MdLogout />
             Logout

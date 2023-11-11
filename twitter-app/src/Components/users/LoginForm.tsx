@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { app } from "firebaseApp";
 import { toast } from "react-toastify";
 
@@ -22,7 +27,7 @@ export default function LoginForm() {
     }
   };
 
-  const onChnage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     if (name === "email") {
@@ -46,12 +51,33 @@ export default function LoginForm() {
       }
     }
   };
+
+  const onClickSocialLogin = async (e: any) => {
+    const { name } = e.target;
+
+    let provider;
+    const auth = getAuth(app);
+
+    if (name === "google") {
+      provider = new GoogleAuthProvider();
+    }
+
+    await signInWithPopup(auth, provider as GoogleAuthProvider)
+      .then((result) => {
+        console.log(result);
+        toast.success("로그인이 완료되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error?.code);
+      });
+  };
   return (
     <form className="form form--lg" onSubmit={onSubmit}>
       <div className="form__title">로그인</div>
       <div className="form__block">
         <label htmlFor="email">이메일</label>
-        <input type="email" name="email" id="email" value={email} onChange={onChnage} required />
+        <input type="email" name="email" id="email" value={email} onChange={onChange} required />
       </div>
 
       <div className="form__block">
@@ -62,7 +88,7 @@ export default function LoginForm() {
           id="password"
           value={password}
           required
-          onChange={onChnage}
+          onChange={onChange}
         />
       </div>
 
@@ -74,13 +100,23 @@ export default function LoginForm() {
 
       <div className="form__block">
         계정이 없으신가요?
-        <Link to="/users/signin" className="form__link">
+        <Link to="/users/signup" className="form__link">
           회원가입 하기
         </Link>
       </div>
       <div className="form__block--lg">
         <button type="submit" className="form__btn--submit" disabled={error?.length > 0}>
           로그인
+        </button>
+      </div>
+      <div className="form__block">
+        <button
+          type="button"
+          name="google"
+          className="form__btn--google"
+          disabled={error?.length > 0}
+          onClick={onClickSocialLogin}>
+          Google로 로그인
         </button>
       </div>
     </form>
