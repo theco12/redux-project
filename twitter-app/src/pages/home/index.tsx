@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     if (user) {
-      let postsRef = collection(db, "posts");
+      let postsRef = collection(db, "postData");
       let postsQuery = query(postsRef, orderBy("createdAt", "desc"));
 
       onSnapshot(postsQuery, (snapshot) => {
