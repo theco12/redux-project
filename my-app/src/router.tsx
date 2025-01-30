@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Counter from "./components/counter";
 import Auth from "./components/auth";
 import Header from "./components/Header";
+import Login from "./pages/Login/Login";
 
 const Router: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Router: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
 
         {/* 404 페이지 */}
         <Route path="*" element={<NotFound />} />

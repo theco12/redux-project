@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { toggleTheme } from "../features/darkModeSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useEffect } from "react";
 
 const HeaderStyled = styled.div`
   display: flex;
@@ -28,6 +31,14 @@ const MenuItems = styled.ul`
 `;
 
 export default function Header() {
+  const theme = useAppSelector((state) => state.darkMode.theme); // 현재 theme 값 가져오기
+  const dispatch = useAppDispatch();
+
+  // 테마 변경 시 <html> 요소에 data-theme 속성 추가
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <HeaderStyled>
       <div>My App</div>
@@ -40,6 +51,14 @@ export default function Header() {
         </li>
         <li>
           <a href="/auth">Auth</a>
+        </li>
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        <li>
+          <button onClick={() => dispatch(toggleTheme())}>
+            {theme === "light" ? "LightMode" : "DarkMode"}
+          </button>
         </li>
       </MenuItems>
     </HeaderStyled>

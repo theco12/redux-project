@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counterSlice";
 import authReducer from "../features/authSlice";
+import darkModeReducer from "../features/darkModeSlice";
 
 // Redux 스토어 설정
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     auth: authReducer,
+    darkMode: darkModeReducer,
   },
 });
 
