@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counterSlice";
+import scoreBoardReducer from "../features/scoreboardSlice";
 import authReducer from "../features/authSlice";
 import darkModeReducer from "../features/darkModeSlice";
 import todolistReducer from "../features/todolistSlice";
@@ -7,7 +7,7 @@ import todolistReducer from "../features/todolistSlice";
 // Redux 스토어 설정
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    scoreboardSlice: scoreBoardReducer,
     auth: authReducer,
     darkMode: darkModeReducer,
     todolist: todolistReducer,
