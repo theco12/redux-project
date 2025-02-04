@@ -18,8 +18,6 @@ export default function TodoPage() {
     }
   };
 
-  console.log(todos);
-
   const handleCheckboxChange = (index: number) => {
     const newCheckedItems = [...checkedItems];
     newCheckedItems[index] = !newCheckedItems[index];

@@ -18,6 +18,10 @@ const Scoreboard: React.FC = () => {
     (state) => state.scoreboardSlice,
   );
 
+  const isDarkMode = useAppSelector(
+    (state: { darkMode: { theme: string } }) => state.darkMode.theme,
+  );
+
   const [customTime, setCustomTime] = useState(10); // 기본 10분 설정
 
   // 타이머 기능 (1초마다 감소)
@@ -41,18 +45,18 @@ const Scoreboard: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container themeMode={isDarkMode}>
       <Title>🏀 점수판</Title>
 
       {/* 점수 표시 */}
       <ScoreDisplay>
         <Team>
-          <TeamName>🏠 Home</TeamName>
+          <TeamName themeMode={isDarkMode}>🏠 Home</TeamName>
           <TeamScore>{homeScore}</TeamScore>
         </Team>
         <VsText>vs</VsText>
         <Team>
-          <TeamName>🛫 Away</TeamName>
+          <TeamName themeMode={isDarkMode}>🛫 Away</TeamName>
           <TeamScore>{awayScore}</TeamScore>
         </Team>
       </ScoreDisplay>
@@ -107,14 +111,14 @@ const Scoreboard: React.FC = () => {
 export default Scoreboard;
 
 // 🌟 스타일 추가
-const Container = styled.div`
+const Container = styled.div<{ themeMode: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #f8f9fa;
-  color: #333;
+  background: ${(props) => (props.themeMode === "dark" ? "#333" : "#fff")};
+  color: ${(props) => (props.themeMode === "dark" ? "#fff" : "#333")};
 `;
 
 const Title = styled.h1`
@@ -136,10 +140,11 @@ const Team = styled.div`
   align-items: center;
 `;
 
-const TeamName = styled.div`
+const TeamName = styled.div<{ themeMode: string }>`
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: ${(props) => (props.themeMode === "dark" ? "#fff" : "#333")};
 `;
 
 const TeamScore = styled.div`

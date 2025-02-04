@@ -22,7 +22,7 @@ export default function Header() {
           <a href="/">Home</a>
         </MenuItem>
         <MenuItem>
-          <a href="/scoreboard">score</a>
+          <a href="/scoreboard">Score</a>
         </MenuItem>
         <MenuItem>
           <a href="/login">Login</a>
