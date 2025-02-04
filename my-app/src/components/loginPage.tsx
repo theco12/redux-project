@@ -1,12 +1,17 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { toggleAuth, setAuthState } from "../features/authSlice";
+import { toggleAuth } from "../features/authSlice";
 
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(
     (state: { auth: { isAuthenticated: any } }) => state.auth.isAuthenticated,
   );
+
+  const isDarkMode = useAppSelector(
+    (state: { darkMode: { theme: string } }) => state.darkMode.theme,
+  );
+
   // State 관리
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -16,26 +21,25 @@ const LoginPage: React.FC = () => {
     const { name, value } = event.target;
     if (name === "username") setUsername(value);
     if (name === "password") setPassword(value);
-    console.log(username);
-    console.log(password);
   };
 
   // 로그인 처리
   const handleLogin = (event: FormEvent): void => {
     event.preventDefault();
+    dispatch(toggleAuth()); // 인증 상태 변경 (예제)
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Login</h1>
-      <form onSubmit={handleLogin} style={styles.form}>
+    <div style={styles.container(isDarkMode)}>
+      <h1 style={styles.title(isDarkMode)}>Login</h1>
+      <form onSubmit={handleLogin} style={styles.form(isDarkMode)}>
         <input
           type="text"
           name="username"
           placeholder="Username"
           value={username}
           onChange={handleInputChange}
-          style={styles.input}
+          style={styles.input(isDarkMode)}
         />
         <input
           type="password"
@@ -43,9 +47,9 @@ const LoginPage: React.FC = () => {
           placeholder="Password"
           value={password}
           onChange={handleInputChange}
-          style={styles.input}
+          style={styles.input(isDarkMode)}
         />
-        <button type="submit" style={styles.button}>
+        <button type="submit" style={styles.button(isDarkMode)}>
           Login
         </button>
       </form>
@@ -53,47 +57,47 @@ const LoginPage: React.FC = () => {
   );
 };
 
-// 스타일 정의
-const styles: { [key: string]: React.CSSProperties } = {
-  container: {
+const styles: { [key: string]: (isDarkMode: string) => React.CSSProperties } = {
+  container: (isDarkMode) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
     paddingTop: "20vh",
     height: "100vh",
-    backgroundColor: "#f9f9f9",
-  },
-  title: {
+    backgroundColor: isDarkMode === "dark" ? "#121212" : "#f9f9f9",
+    color: isDarkMode === "dark" ? "#ffffff" : "#000000",
+  }),
+  title: (isDarkMode) => ({
     fontSize: "24px",
     marginBottom: "20px",
-  },
-  form: {
+    color: isDarkMode === "dark" ? "#ffffff" : "#000000",
+  }),
+  form: () => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     gap: "10px",
-  },
-  input: {
+  }),
+  input: (isDarkMode) => ({
     width: "300px",
     padding: "10px",
     fontSize: "16px",
     borderRadius: "5px",
-    border: "1px solid #ccc",
-  },
-  button: {
+    border: `1px solid ${isDarkMode === "dark" ? "#444" : "#ccc"}`,
+    backgroundColor: isDarkMode === "dark" ? "#333" : "#fff",
+    color: isDarkMode === "dark" ? "#fff" : "#000",
+  }),
+  button: (isDarkMode) => ({
     width: "100%",
     padding: "10px",
     fontSize: "16px",
-    backgroundColor: "#3f51b5",
+    backgroundColor: isDarkMode === "dark" ? "#BB86FC" : "#3f51b5",
     color: "#fff",
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-  },
+  }),
 };
 
 export default LoginPage;
-function dispatch(arg0: any) {
-  throw new Error("Function not implemented.");
-}

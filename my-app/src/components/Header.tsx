@@ -56,6 +56,9 @@ export default function Header() {
           <a href="/login">Login</a>
         </li>
         <li>
+          <a href="/todolist">todo</a>
+        </li>
+        <li>
           <button onClick={() => dispatch(toggleTheme())}>
             {theme === "light" ? "LightMode" : "DarkMode"}
           </button>

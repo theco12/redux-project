@@ -6,6 +6,7 @@ import Counter from "./components/counter";
 import Auth from "./components/auth";
 import Header from "./components/Header";
 import Login from "./pages/Login/Login";
+import TodoList from "./pages/TodoList/todolist";
 
 const Router: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Router: React.FC = () => {
         <Route path="/counter" element={<Counter />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/todolist" element={<TodoList />} />
 
         {/* 404 페이지 */}
         <Route path="*" element={<NotFound />} />

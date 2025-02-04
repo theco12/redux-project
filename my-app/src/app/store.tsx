@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counterSlice";
 import authReducer from "../features/authSlice";
 import darkModeReducer from "../features/darkModeSlice";
+import todolistReducer from "../features/todolistSlice";
 
 // Redux 스토어 설정
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     counter: counterReducer,
     auth: authReducer,
     darkMode: darkModeReducer,
+    todolist: todolistReducer,
   },
 });
 
